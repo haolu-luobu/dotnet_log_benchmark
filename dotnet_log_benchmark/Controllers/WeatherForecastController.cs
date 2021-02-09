@@ -22,8 +22,9 @@ namespace dotnet_log_benchmark.Controllers
 
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger, CalService calService)
+        // public WeatherForecastController(CalService calService)
         {
-            _Logger = logger;
+            // _Logger = logger;
             _CalService = calService;
             _watch = new Stopwatch();
         }
@@ -36,14 +37,15 @@ namespace dotnet_log_benchmark.Controllers
             
             for (var i = 0; i < aLoop; i++)
             {
-                for (var j = 0; j < bLoop; j++)
-                {
-                    sum += 1;
-                }
+                // for (var j = 0; j < bLoop; j++)
+                // {
+                //     sum += 1;
+                // }
+                sum += 1;
                 _Logger.LogInformation($"done with loop:{i}");
             }
             _watch.Stop();
-            _CalService.DoMath();
+            // _CalService.DoMath();
             return new Tuple<int, long>(sum, _watch.ElapsedMilliseconds);
         }
     }
