@@ -26,6 +26,7 @@ namespace dotnet_log_benchmark
         {
             services.AddTransient<CalService>();
             services.AddControllers();
+            services.AddSwaggerGenNewtonsoftSupport();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "dotnet_log_benchmark", Version = "v1"});
@@ -41,6 +42,7 @@ namespace dotnet_log_benchmark
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "dotnet_log_benchmark v1"));
             }
+
             app.UseHttpsRedirection();
 
             app.UseRouting();

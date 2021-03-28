@@ -17,6 +17,7 @@ namespace dotnet_log_benchmark
         {
             
             // CreateHostBuilder(args).Build().Run();
+            // CreateHostBuilderSysLog(args).Build().Run();
             // CreateHostBuilderNlog(args).Build().Run();
             // CreateHostBuilderSerilog(args).Build().Run();
             CreateHostBuilderLog4Net(args).Build().Run();
@@ -25,12 +26,14 @@ namespace dotnet_log_benchmark
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
-        // .ConfigureLogging(logging =>
-        // {
-        //     logging.ClearProviders();
-        //     logging.SetMinimumLevel(LogLevel.Debug);
-        // })
-        // .UseNLog();
+        
+        public static IHostBuilder CreateHostBuilderSysLog(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); })
+                .ConfigureLogging(logging =>
+                {
+                    logging.SetMinimumLevel(LogLevel.Information);
+                });
 
 
         public static IHostBuilder CreateHostBuilderNlog(string[] args) =>
